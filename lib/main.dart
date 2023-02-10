@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'providers/tasks_provider.dart';
 import 'screens/task_overview_screen.dart';
 import 'screens/add_edit_task_screen.dart';
+import 'screens/edit_task_screen.dart';
 
 void main() {
   runApp(const ToDoIT());
@@ -27,7 +28,9 @@ class ToDoIT extends StatelessWidget {
           routes: {
             '/': (context) => const TasksOverviewScreen(),
             AddEditTaskScreen.routeName: ((context) =>
-                const AddEditTaskScreen())
+                const AddEditTaskScreen()),
+            EditTasksOverviewScreen.routeName: (((context) =>
+                const EditTasksOverviewScreen())),
           }),
     );
   }

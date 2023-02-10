@@ -21,7 +21,6 @@ class _AddEditTaskScreenState extends State<AddEditTaskScreen> {
 
   var _isInit = true;
 
-  @override
   void didChangeDependecies() {
     //Récuperatin du produit --> update
     if (_isInit) {

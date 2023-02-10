@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-//import 'package:provider/provider.dart';
-import '../screens/add_edit_task_screen.dart';
-//import '../providers/tasks_provider.dart';
-
-class UserTaskItem extends StatelessWidget {
-  UserTaskItem({
+class UserTaskItem extends StatefulWidget {
+  const UserTaskItem({
     super.key,
     required this.id,
     required this.title,
     required this.description,
     required this.deleteMethod,
     required this.date,
+    required this.isChecked,
   });
 
   final String id;
@@ -19,35 +17,57 @@ class UserTaskItem extends StatelessWidget {
   final String description;
   final Function(String) deleteMethod;
   final DateTime date;
+  final bool isChecked;
+
+  @override
+  State<UserTaskItem> createState() => _UserTaskItemState();
+}
+
+class _UserTaskItemState extends State<UserTaskItem> {
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.green;
+    }
+
     return ListTile(
-      //leading: Text(title),
-      title: Text(
-        title,
-        //style: const TextStyle(fontFamily: 'Roboto-Black'),
+      title: Center(
+        child: Text(widget.title),
       ),
-      leading: Text(date.toString()),
-      trailing: SizedBox(
-        width: 100,
-        child: Row(
-          children: [
-            IconButton(
-                icon: const Icon(Icons.edit),
-                onPressed: () {
-                  Navigator.of(context)
-                      .pushNamed(AddEditTaskScreen.routeName, arguments: id);
-                },
-                color: Colors.grey //Theme.of(context).primaryColor,
-                ),
-            IconButton(
-              icon: const Icon(Icons.delete),
-              onPressed: () => deleteMethod(id),
-              color: Theme.of(context).errorColor,
-            )
-          ],
-        ),
+      leading: SizedBox(
+        child: Text(DateFormat('hh:mm').format(widget.date)),
+      ),
+      // trailing: SizedBox(
+      //   width: 50,
+      //   child: Row(
+      //     children: [
+      //       IconButton(
+      //         icon: const Icon(Icons.check_box_outline_blank),
+      //         onPressed: () => widget.deleteMethod(widget.id),
+      //         color: Theme.of(context).primaryColor,
+      //       )
+      //     ],
+      //   ),
+      // ),
+      trailing: Checkbox(
+        checkColor: Colors.white,
+        fillColor: MaterialStateProperty.resolveWith(getColor),
+        value: isChecked,
+        onChanged: (bool? value) {
+          setState(() {
+            isChecked = value!;
+          });
+        },
       ),
     );
   }

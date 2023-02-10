@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todoit_list/screens/add_edit_task_screen.dart';
+
+import '../screens/edit_task_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -27,7 +28,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Edit Taks'),
             onTap: () {
               Navigator.of(context)
-                  .pushReplacementNamed(AddEditTaskScreen.routeName);
+                  .pushReplacementNamed(EditTasksOverviewScreen.routeName);
             },
           ),
         ],

@@ -3,12 +3,12 @@ import 'package:provider/provider.dart';
 import 'package:todoit_list/screens/add_edit_task_screen.dart';
 
 import '../providers/tasks_provider.dart';
-import '../widgets/task_item.dart';
+import '../widgets/edit_task_item.dart';
 import '../widgets/app_drawer.dart';
 
-class TasksOverviewScreen extends StatelessWidget {
+class EditTasksOverviewScreen extends StatelessWidget {
   static const routeName = '/user_tasks';
-  const TasksOverviewScreen({super.key});
+  const EditTasksOverviewScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class TasksOverviewScreen extends StatelessWidget {
       provider.deleteTask(id);
       //Préparer la SnackBar et l'afficher
       final snackBar = SnackBar(
-        content: const Text('Task done...'),
+        content: const Text('Task Done...'),
         action: SnackBarAction(
           label: 'Undo',
           onPressed: () {
@@ -34,16 +34,8 @@ class TasksOverviewScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ToDoIT List'),
+        title: const Text('Edit Task'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              Navigator.of(context).pushNamed(AddEditTaskScreen.routeName);
-            },
-          ),
-        ],
       ),
       drawer: const AppDrawer(),
       body: Padding(
@@ -52,13 +44,12 @@ class TasksOverviewScreen extends StatelessWidget {
             itemCount: provider.tasks.length,
             itemBuilder: (_, index) => Column(
               children: [
-                UserTaskItem(
+                EditTaskItem(
                   id: provider.tasks[index].id!,
                   title: provider.tasks[index].title,
                   description: provider.tasks[index].description,
                   deleteMethod: deleteTask,
                   date: provider.tasks[index].date!,
-                  isChecked: provider.tasks[index].isChecked,
                 ),
                 const Divider(),
               ],
