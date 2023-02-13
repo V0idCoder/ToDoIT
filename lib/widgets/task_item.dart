@@ -65,7 +65,7 @@ class _UserTaskItemState extends State<UserTaskItem> {
         value: isChecked,
         onChanged: (bool? value) {
           setState(() {
-            isChecked = value;
+            isChecked = value!;
           });
         },
       ),
