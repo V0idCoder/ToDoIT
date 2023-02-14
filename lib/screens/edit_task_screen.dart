@@ -7,7 +7,7 @@ import '../widgets/edit_task_item.dart';
 import '../widgets/app_drawer.dart';
 
 class EditTasksOverviewScreen extends StatelessWidget {
-  static const routeName = '/user_tasks';
+  static const routeName = '/edit_tasks';
   const EditTasksOverviewScreen({super.key});
 
   @override
