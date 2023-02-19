@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoit_list/screens/add_edit_task_screen.dart';
 
-import '../providers/tasks_provider.dart';
+//import '../providers/tasks_provider.dart';
 import '../widgets/edit_task_item.dart';
 import '../widgets/app_drawer.dart';
 
